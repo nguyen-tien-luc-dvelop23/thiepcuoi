@@ -3,24 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Huyền Diệu & Quốc Tuấn Wedding Day</title>
+
+  <title>Thiệp cưới Huyền Diệu & Quốc Tuấn</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --green: #064f31;
-      --green-2: #0b6a43;
-      --green-3: #0e7b4d;
-      --gold: #b78b3b;
-      --gold-light: #f1d48a;
-      --cream: #fbf7ee;
-      --paper: #fffdf7;
-      --text: #29402f;
-      --muted: #6f7d70;
-      --shadow: 0 22px 60px rgba(0, 0, 0, .18);
+      --white: #ffffff;
+      --paper: #fffdf8;
+      --cream: #faf7ef;
+      --green: #0b4f34;
+      --green-2: #0f6b46;
+      --gold: #b88a3b;
+      --gold-2: #e6c77a;
+      --text: #27382e;
+      --muted: #738077;
+      --line: rgba(11, 79, 52, 0.16);
+      --shadow: 0 24px 70px rgba(24, 55, 38, 0.13);
+      --radius: 28px;
     }
 
     * {
@@ -35,21 +38,28 @@
 
     body {
       font-family: "Quicksand", sans-serif;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(183, 139, 59, .10), transparent 26%),
-        radial-gradient(circle at 90% 20%, rgba(6, 79, 49, .11), transparent 30%),
-        linear-gradient(180deg, #f9f6ee, #eef4ed);
       color: var(--text);
+      background:
+        radial-gradient(circle at 8% 10%, rgba(184, 138, 59, 0.09), transparent 24%),
+        radial-gradient(circle at 90% 16%, rgba(11, 79, 52, 0.07), transparent 25%),
+        linear-gradient(180deg, #ffffff 0%, #ffffff 48%, #fbfaf5 100%);
       overflow-x: hidden;
     }
 
-    body.no-scroll {
+    body.lock {
       overflow: hidden;
     }
 
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font-family: inherit;
     }
 
     .script {
@@ -61,118 +71,175 @@
       font-family: "Playfair Display", serif;
     }
 
-    .page-loader {
+    .loader {
       position: fixed;
       inset: 0;
-      background: var(--cream);
-      z-index: 9999;
+      z-index: 999;
       display: grid;
       place-items: center;
-      transition: opacity .8s ease, visibility .8s ease;
+      background: white;
+      transition: 0.8s ease;
     }
 
-    .page-loader.hide {
+    .loader.hide {
       opacity: 0;
       visibility: hidden;
     }
 
-    .loader-card {
+    .loader-box {
       text-align: center;
       color: var(--green);
     }
 
-    .loader-rings {
-      width: 86px;
-      height: 86px;
-      margin: 0 auto 18px;
+    .loader-heart {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 16px;
       border-radius: 50%;
-      border: 2px solid rgba(6, 79, 49, .15);
-      position: relative;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #ffffff, #fff8e8);
+      border: 1px solid rgba(184, 138, 59, 0.26);
+      box-shadow: var(--shadow);
+      animation: pulse 1.35s ease-in-out infinite;
+      font-size: 34px;
     }
 
-    .loader-rings::before,
-    .loader-rings::after {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border-radius: 50%;
-      border: 2px solid transparent;
-      border-top-color: var(--green);
-      animation: spin 1.2s linear infinite;
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.08);
+      }
     }
 
-    .loader-rings::after {
-      inset: 20px;
-      border-top-color: var(--gold);
-      animation-duration: 1.8s;
-      animation-direction: reverse;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .petal-canvas {
+    .flower-canvas {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
+      z-index: 8;
       pointer-events: none;
-      z-index: 20;
     }
 
-    .music-btn,
-    .to-top {
+    .float-btn {
       position: fixed;
       right: 18px;
+      z-index: 50;
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      border: 1px solid rgba(183, 139, 59, .35);
-      background: rgba(255, 253, 247, .88);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 28px rgba(0,0,0,.12);
+      border: 1px solid rgba(184, 138, 59, 0.28);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
       color: var(--green);
-      z-index: 50;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.11);
       cursor: pointer;
+      font-size: 20px;
       display: grid;
       place-items: center;
-      font-size: 20px;
-      transition: transform .25s ease, background .25s ease;
+      transition: 0.25s ease;
+    }
+
+    .float-btn:hover {
+      transform: translateY(-4px);
+      background: white;
     }
 
     .music-btn {
-      bottom: 86px;
+      bottom: 88px;
+      position: fixed;
     }
 
-    .to-top {
+    .music-btn.playing {
+      color: white;
+      background: linear-gradient(135deg, var(--green), var(--green-2));
+      animation: pulse 1.45s ease-in-out infinite;
+    }
+
+    .music-btn.loading {
+      pointer-events: none;
+      opacity: 0.72;
+    }
+
+    .music-hint {
+      position: fixed;
+      right: 74px;
+      bottom: 94px;
+      z-index: 50;
+      max-width: 210px;
+      padding: 10px 13px;
+      border-radius: 999px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(184, 138, 59, 0.28);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.10);
+      backdrop-filter: blur(14px);
+      transition: 0.3s ease;
+    }
+
+    .music-hint.hide {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(8px);
+    }
+
+    .top-btn {
       bottom: 24px;
       opacity: 0;
       visibility: hidden;
     }
 
-    .to-top.show {
+    .top-btn.show {
       opacity: 1;
       visibility: visible;
     }
 
-    .music-btn:hover,
-    .to-top:hover {
-      transform: translateY(-4px) scale(1.04);
-      background: white;
+    .navbar {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 40;
+      width: min(720px, calc(100% - 28px));
+      padding: 10px;
+      border: 1px solid rgba(184, 138, 59, 0.22);
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(18px);
+      border-radius: 999px;
+      box-shadow: 0 14px 44px rgba(20, 42, 30, 0.08);
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .navbar a {
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green);
+      transition: 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .navbar a:hover {
+      background: rgba(11, 79, 52, 0.08);
     }
 
     .hero {
       min-height: 100svh;
+      position: relative;
       display: grid;
       place-items: center;
-      position: relative;
-      padding: 28px 14px 70px;
+      padding: 92px 16px 58px;
       overflow: hidden;
       background:
-        linear-gradient(rgba(251,247,238,.82), rgba(251,247,238,.92)),
-        url("data:image/svg+xml,%3Csvg width='500' height='500' viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23064f31' stroke-opacity='.13' stroke-width='1.3'%3E%3Cpath d='M63 126c43-28 84-39 124-34 66 9 96 59 167 39 31-9 56-30 76-63'/%3E%3Cpath d='M78 128c24 7 43 22 57 45M110 108c13 24 16 48 8 73M159 92c-4 34-18 62-43 83M342 130c31 18 49 45 54 82M381 109c7 34 3 64-11 91'/%3E%3Cellipse cx='95' cy='118' rx='18' ry='42' transform='rotate(48 95 118)'/%3E%3Cellipse cx='145' cy='94' rx='14' ry='36' transform='rotate(72 145 94)'/%3E%3Cellipse cx='390' cy='104' rx='15' ry='40' transform='rotate(38 390 104)'/%3E%3C/g%3E%3C/svg%3E");
-      background-size: 560px;
+        linear-gradient(180deg, rgba(255,255,255,0.84), rgba(255,255,255,0.96)),
+        url("data:image/svg+xml,%3Csvg width='540' height='540' viewBox='0 0 540 540' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230b4f34' stroke-opacity='.10' stroke-width='1.2'%3E%3Cpath d='M55 116c54-35 107-47 159-36 58 13 88 57 154 43 44-9 78-38 104-87'/%3E%3Cpath d='M96 107c16 28 17 59 4 93M154 82c-2 43-22 78-60 105M370 119c38 24 58 59 59 106M417 89c10 42 2 79-23 111'/%3E%3Cellipse cx='86' cy='116' rx='15' ry='39' transform='rotate(50 86 116)'/%3E%3Cellipse cx='145' cy='79' rx='14' ry='37' transform='rotate(70 145 79)'/%3E%3Cellipse cx='405' cy='90' rx='14' ry='42' transform='rotate(37 405 90)'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 600px;
     }
 
     .hero::before,
@@ -180,467 +247,456 @@
       content: "";
       position: absolute;
       border-radius: 999px;
-      background: rgba(6, 79, 49, .09);
+      pointer-events: none;
       filter: blur(4px);
-      animation: floatBlob 8s ease-in-out infinite;
     }
 
     .hero::before {
-      width: 280px;
-      height: 280px;
-      left: -120px;
-      top: 8%;
+      width: 310px;
+      height: 310px;
+      left: -150px;
+      top: 15%;
+      background: rgba(11, 79, 52, 0.06);
+      animation: blob 8s ease-in-out infinite;
     }
 
     .hero::after {
-      width: 340px;
-      height: 340px;
-      right: -150px;
-      bottom: 5%;
-      animation-delay: -2s;
-      background: rgba(183, 139, 59, .12);
+      width: 280px;
+      height: 280px;
+      right: -120px;
+      bottom: 8%;
+      background: rgba(184, 138, 59, 0.09);
+      animation: blob 9s ease-in-out infinite reverse;
     }
 
-    @keyframes floatBlob {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-24px) scale(1.06); }
+    @keyframes blob {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-24px) scale(1.08);
+      }
     }
 
-    .hero-inner {
-      width: min(100%, 500px);
-      text-align: center;
+    .hero-card {
+      width: min(920px, 100%);
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
       position: relative;
       z-index: 2;
     }
 
-    .save {
-      color: var(--green);
-      font-size: clamp(42px, 9vw, 70px);
-      line-height: .85;
-      text-shadow: 0 8px 30px rgba(6,79,49,.15);
-      animation: fadeDown 1s ease both;
+    .hero-left {
+      padding: clamp(30px, 5vw, 54px);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(184, 138, 59, 0.23);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
     }
 
-    .couple-name {
+    .save {
+      font-size: clamp(52px, 9vw, 86px);
+      color: var(--gold);
+      line-height: 0.9;
+      animation: fadeDown 0.9s ease both;
+    }
+
+    .hero-left h1 {
       margin-top: 10px;
       font-family: "Playfair Display", serif;
-      font-size: clamp(27px, 6vw, 44px);
-      color: var(--green);
-      letter-spacing: 1px;
       text-transform: uppercase;
-      animation: fadeDown 1s ease .15s both;
+      color: var(--green);
+      font-size: clamp(34px, 6vw, 58px);
+      line-height: 1.08;
+      letter-spacing: 1px;
+      animation: fadeUp 0.9s ease 0.15s both;
     }
 
-    .invite-line {
-      margin: 24px auto 12px;
-      font-family: "Playfair Display", serif;
-      font-size: 18px;
-      color: #506653;
-      letter-spacing: .8px;
-      animation: fadeUp 1s ease .3s both;
+    .hero-sub {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+      animation: fadeUp 0.9s ease 0.28s both;
     }
 
-    .guest-name {
-      min-height: 34px;
-      color: var(--gold);
-      font-family: "Great Vibes", cursive;
-      font-size: 42px;
-      animation: shimmer 2.6s linear infinite;
+    .guest-line {
+      margin-top: 24px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--gold);
+      border-radius: 20px;
+      background: linear-gradient(90deg, rgba(184, 138, 59, 0.08), transparent);
+      animation: fadeUp 0.9s ease 0.36s both;
     }
 
-    @keyframes shimmer {
-      0%, 100% { text-shadow: 0 0 0 rgba(183,139,59,0); }
-      50% { text-shadow: 0 0 26px rgba(183,139,59,.38); }
-    }
-
-    .thin-line {
-      width: 86%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--green), transparent);
-      margin: 18px auto 28px;
-      animation: lineGrow 1.2s ease .4s both;
-    }
-
-    @keyframes lineGrow {
-      from { transform: scaleX(0); opacity: 0; }
-      to { transform: scaleX(1); opacity: 1; }
-    }
-
-    .envelope-wrap {
-      margin: 0 auto;
-      width: min(92vw, 380px);
-      height: 430px;
-      position: relative;
-      perspective: 1100px;
-      animation: fadeUp 1s ease .45s both;
-    }
-
-    .photo-card {
-      position: absolute;
-      left: 50%;
-      top: 46px;
-      width: 78%;
-      height: 235px;
-      transform: translateX(-50%);
-      background: white;
-      border: 10px solid white;
-      box-shadow: 0 14px 30px rgba(0,0,0,.14);
-      z-index: 4;
-      transition: transform 1.2s cubic-bezier(.2,.8,.2,1);
-    }
-
-    .photo-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .guest-line span {
       display: block;
-      filter: saturate(1.03) contrast(1.02);
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 1px;
     }
 
-    .photo-card::after {
-      content: "";
+    .guest-line strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--green);
+      font-family: "Great Vibes", cursive;
+      font-size: 46px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      animation: fadeUp 0.9s ease 0.46s both;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 20px;
+      cursor: pointer;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.13);
+    }
+
+    .btn-green {
+      color: white;
+      background: linear-gradient(135deg, var(--green), var(--green-2));
+    }
+
+    .btn-gold {
+      color: white;
+      background: linear-gradient(135deg, #c99b43, #8b6120);
+    }
+
+    .btn-light {
+      color: var(--green);
+      background: white;
+      border: 1px solid rgba(11, 79, 52, 0.16);
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      min-height: 610px;
+      animation: fadeUp 1s ease 0.2s both;
+    }
+
+    .main-photo {
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,.32), transparent);
-      transform: translateX(-120%);
-      animation: photoLight 3.8s ease-in-out infinite;
-    }
-
-    @keyframes photoLight {
-      0%, 35% { transform: translateX(-120%); }
-      58%, 100% { transform: translateX(120%); }
-    }
-
-    .envelope {
-      position: absolute;
-      left: 50%;
-      bottom: 20px;
-      width: 92%;
-      height: 250px;
-      transform: translateX(-50%);
-      z-index: 6;
-    }
-
-    .env-back {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(145deg, #09633f, #043d29);
-      border-radius: 7px 7px 2px 2px;
+      border-radius: 38px;
+      padding: 12px;
+      background: white;
+      border: 1px solid rgba(184, 138, 59, 0.22);
       box-shadow: var(--shadow);
       overflow: hidden;
     }
 
-    .env-back::before,
-    .env-back::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      width: 52%;
+    .main-photo img {
+      width: 100%;
       height: 100%;
-      background: linear-gradient(140deg, #087049, #064f31);
-      clip-path: polygon(0 100%, 100% 0, 100% 100%);
+      object-fit: cover;
+      border-radius: 28px;
+      display: block;
+      transition: 1s ease;
     }
 
-    .env-back::before {
-      left: 0;
+    .main-photo:hover img {
+      transform: scale(1.07);
     }
 
-    .env-back::after {
-      right: 0;
-      transform: scaleX(-1);
-      filter: brightness(.85);
-    }
-
-    .env-flap {
+    .date-badge {
       position: absolute;
-      left: 50%;
-      top: -118px;
-      width: 70%;
-      height: 180px;
-      transform: translateX(-50%) rotateX(0deg);
-      transform-origin: bottom center;
-      background: linear-gradient(160deg, #0a7048, #043c27);
-      clip-path: polygon(50% 0, 100% 100%, 0 100%);
-      border-radius: 20px 20px 0 0;
-      z-index: -1;
-      transition: transform 1s cubic-bezier(.2,.8,.2,1);
-    }
-
-    .wax {
-      position: absolute;
-      left: 50%;
-      top: 175px;
-      width: 72px;
-      height: 72px;
-      transform: translateX(-50%);
-      border: 0;
+      left: -24px;
+      bottom: 34px;
+      width: 178px;
+      min-height: 178px;
       border-radius: 50%;
-      background:
-        radial-gradient(circle at 32% 24%, #ffe7a5, transparent 18%),
-        radial-gradient(circle at 50% 50%, #bd8230, #7d4b16);
-      color: white;
-      z-index: 9;
-      cursor: pointer;
-      box-shadow: 0 8px 18px rgba(0,0,0,.28), inset 0 2px 8px rgba(255,255,255,.35);
-      animation: waxPulse 1.8s ease-in-out infinite;
-    }
-
-    .wax::before {
-      content: "🌿";
-      font-size: 31px;
-      position: absolute;
-      inset: 0;
       display: grid;
       place-items: center;
-      transform: rotate(-20deg);
-    }
-
-    .wax::after {
-      content: "Chạm để mở";
-      position: absolute;
-      left: 50%;
-      top: 78px;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      font-family: "Quicksand", sans-serif;
-      font-weight: 700;
+      text-align: center;
       color: white;
-      background: rgba(6, 79, 49, .88);
-      padding: 8px 14px;
-      border-radius: 999px;
-      box-shadow: 0 10px 22px rgba(0,0,0,.14);
+      background:
+        radial-gradient(circle at 28% 18%, rgba(255,255,255,0.32), transparent 20%),
+        linear-gradient(135deg, var(--green), #073724);
+      border: 8px solid white;
+      box-shadow: 0 22px 50px rgba(0,0,0,0.18);
+      animation: float 3.2s ease-in-out infinite;
     }
 
-    @keyframes waxPulse {
-      0%, 100% { transform: translateX(-50%) scale(1); }
-      50% { transform: translateX(-50%) scale(1.08); }
-    }
-
-    .finger {
-      position: absolute;
-      left: calc(50% + 34px);
-      top: 236px;
-      z-index: 10;
-      font-size: 46px;
-      color: white;
-      transform: rotate(-18deg);
-      animation: tap 1.2s ease-in-out infinite;
-      text-shadow: 0 5px 18px rgba(0,0,0,.35);
-      pointer-events: none;
-    }
-
-    @keyframes tap {
-      0%, 100% { transform: translateY(0) rotate(-18deg) scale(1); }
-      50% { transform: translateY(10px) rotate(-18deg) scale(.92); }
-    }
-
-    .envelope-wrap.open .env-flap {
-      transform: translateX(-50%) rotateX(178deg);
-    }
-
-    .envelope-wrap.open .photo-card {
-      transform: translateX(-50%) translateY(-58px) scale(1.04) rotate(-1.5deg);
-    }
-
-    .envelope-wrap.open .wax,
-    .envelope-wrap.open .finger {
-      opacity: 0;
-      pointer-events: none;
-      transition: .45s ease;
-    }
-
-    .dates {
-      margin-top: 8px;
-      color: var(--green);
+    .date-badge strong {
       font-family: "Playfair Display", serif;
-      font-size: 27px;
-      letter-spacing: 6px;
-      line-height: 1.55;
-      animation: fadeUp 1s ease .6s both;
+      font-size: 32px;
+      line-height: 1.1;
     }
 
-    .scroll-hint {
-      margin-top: 16px;
-      color: #6b786c;
+    .date-badge span {
+      display: block;
+      margin-top: 5px;
       font-size: 13px;
-      animation: bounce 1.6s ease-in-out infinite;
+      letter-spacing: 1px;
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); opacity: .6; }
-      50% { transform: translateY(8px); opacity: 1; }
+    .mini-card {
+      position: absolute;
+      right: -16px;
+      top: 34px;
+      width: 168px;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(184, 138, 59, 0.24);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+      text-align: center;
+      animation: float 3.6s ease-in-out infinite reverse;
+    }
+
+    .mini-card .script {
+      color: var(--gold);
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .mini-card p {
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-14px);
+      }
     }
 
     @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-24px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-26px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(32px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     section {
+      padding: 88px 18px;
       position: relative;
-      padding: 78px 18px;
     }
 
     .container {
-      width: min(1080px, 100%);
+      width: min(1120px, 100%);
       margin: 0 auto;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 36px;
+      margin-bottom: 42px;
     }
 
     .section-title .script {
-      font-size: clamp(46px, 8vw, 68px);
       color: var(--gold);
-      line-height: .85;
+      font-size: clamp(48px, 8vw, 78px);
+      line-height: 0.85;
     }
 
     .section-title h2 {
       margin-top: 8px;
-      font-family: "Playfair Display", serif;
-      font-size: clamp(25px, 5vw, 42px);
-      text-transform: uppercase;
       color: var(--green);
+      font-family: "Playfair Display", serif;
+      font-size: clamp(28px, 5vw, 46px);
+      text-transform: uppercase;
       letter-spacing: 1px;
     }
 
-    .soft-card {
-      background: rgba(255,255,255,.78);
-      border: 1px solid rgba(183,139,59,.22);
-      box-shadow: 0 22px 60px rgba(6,79,49,.10);
-      border-radius: 28px;
-      backdrop-filter: blur(14px);
+    .section-title p {
+      width: min(680px, 100%);
+      margin: 14px auto 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
     }
 
-    .intro {
-      background: linear-gradient(180deg, rgba(255,253,247,.92), rgba(239,246,240,.92));
-    }
-
-    .intro-grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 26px;
-      align-items: center;
-    }
-
-    .intro-text {
-      padding: clamp(26px, 5vw, 46px);
-    }
-
-    .intro-text .script {
-      color: var(--gold);
-      font-size: 54px;
-    }
-
-    .intro-text h3 {
-      margin-top: 5px;
-      font-family: "Playfair Display", serif;
-      color: var(--green);
-      font-size: clamp(26px, 4vw, 42px);
-    }
-
-    .intro-text p {
-      margin-top: 18px;
-      color: #596a5d;
-      font-size: 17px;
-      line-height: 1.85;
-    }
-
-    .intro-photo {
-      min-height: 430px;
-      border-radius: 28px;
-      overflow: hidden;
-      position: relative;
+    .white-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(184, 138, 59, 0.2);
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
 
-    .intro-photo img {
-      width: 100%;
-      height: 100%;
-      min-height: 430px;
-      object-fit: cover;
-      display: block;
-      transform: scale(1.04);
-      transition: transform 1.2s ease;
-    }
-
-    .intro-photo:hover img {
-      transform: scale(1.11);
-    }
-
-    .intro-photo::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(0deg, rgba(6,79,49,.44), transparent 52%);
-    }
-
-    .quote-box {
-      margin-top: 26px;
-      padding: 24px;
-      border-left: 4px solid var(--gold);
-      background: rgba(183,139,59,.08);
-      border-radius: 18px;
-      font-family: "Playfair Display", serif;
-      color: var(--green);
-      font-size: 20px;
-      line-height: 1.7;
-    }
-
     .countdown-section {
+      background: white;
+      padding-top: 40px;
+    }
+
+    .countdown-wrap {
+      padding: 34px;
       background:
-        linear-gradient(rgba(6,79,49,.88), rgba(6,79,49,.88)),
-        radial-gradient(circle at 20% 20%, rgba(241,212,138,.35), transparent 28%);
+        linear-gradient(135deg, rgba(11,79,52,0.96), rgba(15,107,70,0.94)),
+        radial-gradient(circle at 20% 20%, rgba(230,199,122,0.35), transparent 20%);
+      border-radius: 34px;
       color: white;
+      position: relative;
       overflow: hidden;
     }
 
-    .countdown-section .section-title h2,
-    .countdown-section .section-title .script {
-      color: white;
+    .countdown-wrap::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -90px;
+      top: -90px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.18);
     }
 
     .countdown {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-      width: min(760px, 100%);
-      margin: 0 auto;
     }
 
     .time-box {
+      padding: 24px 10px;
       text-align: center;
-      padding: 26px 12px;
-      border-radius: 24px;
-      background: rgba(255,255,255,.11);
-      border: 1px solid rgba(255,255,255,.22);
-      box-shadow: 0 16px 38px rgba(0,0,0,.16);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
     }
 
     .time-box strong {
       display: block;
+      color: var(--gold-2);
       font-family: "Playfair Display", serif;
-      font-size: clamp(34px, 7vw, 56px);
-      color: var(--gold-light);
+      font-size: clamp(34px, 6vw, 56px);
       line-height: 1;
     }
 
     .time-box span {
       display: block;
       margin-top: 8px;
+      font-size: 13px;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1px;
-      font-size: 13px;
     }
 
-    .event-grid {
+    .invite-section {
+      background: white;
+    }
+
+    .invite-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .invite-photo {
+      height: 560px;
+      overflow: hidden;
+      border-radius: 34px;
+      padding: 12px;
+      background: white;
+      border: 1px solid rgba(184, 138, 59, 0.22);
+      box-shadow: var(--shadow);
+    }
+
+    .invite-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 24px;
+      transition: 1s ease;
+    }
+
+    .invite-photo:hover img {
+      transform: scale(1.08);
+    }
+
+    .invite-content {
+      padding: clamp(28px, 5vw, 52px);
+    }
+
+    .invite-content .script {
+      color: var(--gold);
+      font-size: 58px;
+      line-height: 1;
+    }
+
+    .invite-content h2 {
+      margin-top: 8px;
+      color: var(--green);
+      font-family: "Playfair Display", serif;
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.15;
+    }
+
+    .invite-content p {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    .quote {
+      margin-top: 24px;
+      padding: 22px;
+      border-radius: 22px;
+      background: linear-gradient(90deg, rgba(184,138,59,0.10), rgba(11,79,52,0.04));
+      border-left: 4px solid var(--gold);
+      color: var(--green);
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
+    .events-section {
+      background: linear-gradient(180deg, #ffffff, #fbfaf5);
+    }
+
+    .events-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 24px;
@@ -655,171 +711,74 @@
     .event-card::before {
       content: "";
       position: absolute;
-      width: 160px;
-      height: 160px;
+      width: 170px;
+      height: 170px;
       border-radius: 50%;
-      right: -70px;
-      top: -70px;
-      background: rgba(183,139,59,.13);
+      right: -80px;
+      top: -80px;
+      background: rgba(184, 138, 59, 0.12);
     }
 
     .event-icon {
-      width: 64px;
-      height: 64px;
+      width: 66px;
+      height: 66px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, var(--green), var(--green-2));
       color: white;
-      font-size: 28px;
-      box-shadow: 0 12px 30px rgba(6,79,49,.2);
-      margin-bottom: 18px;
+      font-size: 29px;
+      box-shadow: 0 18px 34px rgba(11, 79, 52, 0.22);
     }
 
     .event-card h3 {
-      font-family: "Playfair Display", serif;
+      margin-top: 18px;
       color: var(--green);
-      font-size: 28px;
-      margin-bottom: 12px;
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
     }
 
-    .event-card .date-big {
-      font-family: "Playfair Display", serif;
+    .event-date {
+      margin-top: 8px;
       color: var(--gold);
+      font-family: "Playfair Display", serif;
       font-size: 34px;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
 
     .event-card p {
-      color: #637063;
+      margin-top: 10px;
+      color: var(--muted);
       line-height: 1.75;
-      margin: 8px 0;
     }
 
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
+    .gallery-section {
+      background: white;
     }
 
-    .btn {
-      border: 0;
-      border-radius: 999px;
-      padding: 13px 20px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform .25s ease, box-shadow .25s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: "Quicksand", sans-serif;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 28px rgba(0,0,0,.16);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--green), var(--green-2));
-      color: white;
-    }
-
-    .btn-gold {
-      background: linear-gradient(135deg, #c69a48, #8c651f);
-      color: white;
-    }
-
-    .timeline-section {
-      background: linear-gradient(180deg, #f8f5ed, #eef5ef);
-    }
-
-    .timeline {
-      position: relative;
-      width: min(820px, 100%);
-      margin: 0 auto;
-      padding: 10px 0;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 2px;
-      transform: translateX(-50%);
-      background: linear-gradient(var(--gold), var(--green));
-    }
-
-    .timeline-item {
-      position: relative;
-      width: 50%;
-      padding: 20px 32px;
-    }
-
-    .timeline-item:nth-child(odd) {
-      left: 0;
-      text-align: right;
-    }
-
-    .timeline-item:nth-child(even) {
-      left: 50%;
-    }
-
-    .timeline-dot {
-      position: absolute;
-      top: 36px;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--gold);
-      border: 4px solid white;
-      box-shadow: 0 0 0 5px rgba(183,139,59,.16);
-    }
-
-    .timeline-item:nth-child(odd) .timeline-dot {
-      right: -9px;
-    }
-
-    .timeline-item:nth-child(even) .timeline-dot {
-      left: -9px;
-    }
-
-    .timeline-content {
-      padding: 24px;
-    }
-
-    .timeline-content h3 {
-      font-family: "Playfair Display", serif;
-      color: var(--green);
-      margin-bottom: 8px;
-      font-size: 24px;
-    }
-
-    .timeline-content time {
-      color: var(--gold);
-      font-weight: 800;
-    }
-
-    .gallery {
+    .gallery-grid {
       display: grid;
-      grid-template-columns: 1.2fr .8fr .8fr;
-      grid-auto-rows: 230px;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      grid-auto-rows: 245px;
       gap: 16px;
     }
 
     .gallery-item {
-      overflow: hidden;
-      border-radius: 24px;
       position: relative;
-      box-shadow: 0 14px 34px rgba(6,79,49,.13);
+      overflow: hidden;
+      border-radius: 26px;
+      background: #f2f2f2;
+      box-shadow: 0 18px 44px rgba(20, 42, 30, 0.11);
+      cursor: pointer;
     }
 
-    .gallery-item:first-child {
+    .gallery-item.big {
       grid-row: span 2;
+    }
+
+    .gallery-item.wide {
+      grid-column: span 2;
     }
 
     .gallery-item img {
@@ -827,98 +786,220 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform .9s ease, filter .9s ease;
+      transition: 0.8s ease;
     }
 
     .gallery-item:hover img {
-      transform: scale(1.12);
-      filter: brightness(.88);
+      transform: scale(1.1);
+      filter: brightness(0.86);
     }
 
     .gallery-item::after {
-      content: "Huyền Diệu & Quốc Tuấn";
+      content: "Xem ảnh";
       position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 16px;
-      color: white;
-      font-family: "Great Vibes", cursive;
-      font-size: 32px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -35%);
       opacity: 0;
-      transform: translateY(12px);
-      transition: .35s ease;
-      text-shadow: 0 4px 18px rgba(0,0,0,.35);
+      color: white;
+      font-weight: 800;
+      background: rgba(11, 79, 52, 0.78);
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: 0.3s ease;
     }
 
     .gallery-item:hover::after {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate(-50%, -50%);
+    }
+
+    .qr-section {
+      background:
+        radial-gradient(circle at 15% 10%, rgba(184, 138, 59, 0.08), transparent 22%),
+        radial-gradient(circle at 88% 40%, rgba(11, 79, 52, 0.07), transparent 24%),
+        #ffffff;
+    }
+
+    .qr-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.92fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .qr-info {
+      padding: clamp(28px, 5vw, 52px);
+    }
+
+    .qr-info .script {
+      color: var(--gold);
+      font-size: 64px;
+      line-height: 1;
+    }
+
+    .qr-info h2 {
+      color: var(--green);
+      font-family: "Playfair Display", serif;
+      font-size: clamp(30px, 5vw, 48px);
+      margin-top: 8px;
+    }
+
+    .qr-info p {
+      margin-top: 16px;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 17px;
+    }
+
+    .bank-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .bank-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(11, 79, 52, 0.045);
+      border: 1px solid rgba(11, 79, 52, 0.08);
+    }
+
+    .bank-row span {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .bank-row strong {
+      color: var(--green);
+      text-align: right;
+    }
+
+    .qr-card {
+      padding: 26px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .qr-card::before {
+      content: "";
+      position: absolute;
+      inset: -80px;
+      background: conic-gradient(from 180deg, transparent, rgba(184,138,59,0.16), transparent, rgba(11,79,52,0.10), transparent);
+      animation: rotateLight 8s linear infinite;
+    }
+
+    .qr-inner {
+      position: relative;
+      z-index: 1;
+      background: white;
+      border-radius: 24px;
+      padding: 22px;
+      border: 1px solid rgba(184, 138, 59, 0.22);
+    }
+
+    .qr-inner img {
+      width: min(330px, 100%);
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      border-radius: 18px;
+      padding: 10px;
+      background: white;
+      box-shadow: inset 0 0 0 1px rgba(11, 79, 52, 0.08);
+    }
+
+    .qr-inner h3 {
+      margin-top: 16px;
+      color: var(--green);
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+    }
+
+    .qr-inner p {
+      margin-top: 8px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    @keyframes rotateLight {
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     .rsvp-section {
-      background:
-        linear-gradient(rgba(255,253,247,.88), rgba(255,253,247,.94)),
-        url("data:image/svg+xml,%3Csvg width='340' height='340' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23064f31' stroke-opacity='.12'%3E%3Cpath d='M30 240C88 150 132 110 201 93c44-11 78-33 101-64'/%3E%3Cpath d='M99 157c-34-4-55-22-62-55 34 4 55 22 62 55zM184 101c-29-24-38-53-27-88 29 24 38 53 27 88zM238 72c34 5 55 24 61 57-34-5-55-24-61-57z'/%3E%3C/g%3E%3C/svg%3E");
-      background-size: 480px;
+      background: linear-gradient(180deg, #ffffff, #fbfaf5);
     }
 
     .rsvp-card {
       width: min(760px, 100%);
       margin: 0 auto;
-      padding: clamp(26px, 5vw, 44px);
+      padding: clamp(28px, 5vw, 52px);
       text-align: center;
     }
 
     .rsvp-card p {
-      color: #647064;
+      color: var(--muted);
       line-height: 1.8;
-      font-size: 17px;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     .form {
       display: grid;
       gap: 14px;
-      margin-top: 20px;
     }
 
     .form input,
     .form select,
     .form textarea {
       width: 100%;
-      border: 1px solid rgba(6,79,49,.18);
-      border-radius: 18px;
       padding: 15px 18px;
-      font-family: "Quicksand", sans-serif;
-      font-size: 15px;
+      border-radius: 18px;
+      border: 1px solid rgba(11, 79, 52, 0.16);
+      background: white;
       outline: none;
-      background: rgba(255,255,255,.78);
-      transition: border .25s ease, box-shadow .25s ease;
+      color: var(--text);
+      font-size: 15px;
+      transition: 0.25s ease;
     }
 
     .form input:focus,
     .form select:focus,
     .form textarea:focus {
       border-color: var(--gold);
-      box-shadow: 0 0 0 5px rgba(183,139,59,.12);
+      box-shadow: 0 0 0 5px rgba(184, 138, 59, 0.12);
     }
 
     .footer {
-      padding: 54px 18px;
       text-align: center;
-      background: var(--green);
+      padding: 58px 18px;
       color: white;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(230,199,122,0.16), transparent 24%),
+        linear-gradient(135deg, #073724, var(--green));
     }
 
     .footer .script {
-      font-size: 56px;
-      color: var(--gold-light);
+      color: var(--gold-2);
+      font-size: 64px;
+      line-height: 1;
+    }
+
+    .footer h2 {
+      margin-top: 8px;
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      letter-spacing: 1px;
     }
 
     .footer p {
-      margin-top: 10px;
-      opacity: .86;
-      line-height: 1.7;
+      margin-top: 12px;
+      opacity: 0.88;
+      line-height: 1.8;
     }
 
     .modal {
@@ -927,9 +1008,9 @@
       z-index: 100;
       display: none;
       place-items: center;
-      background: rgba(6, 28, 18, .68);
-      backdrop-filter: blur(10px);
       padding: 18px;
+      background: rgba(7, 35, 24, 0.72);
+      backdrop-filter: blur(14px);
     }
 
     .modal.show {
@@ -937,70 +1018,81 @@
     }
 
     .modal-card {
-      width: min(560px, 100%);
-      background: var(--paper);
-      border-radius: 30px;
-      padding: 34px 24px;
-      text-align: center;
       position: relative;
-      box-shadow: 0 30px 90px rgba(0,0,0,.35);
-      animation: modalIn .45s ease both;
-      overflow: hidden;
-    }
-
-    .modal-card::before {
-      content: "";
-      position: absolute;
-      inset: 10px;
-      border: 1px solid rgba(183,139,59,.35);
-      border-radius: 24px;
-      pointer-events: none;
+      width: min(620px, 100%);
+      max-height: 88vh;
+      overflow: auto;
+      padding: 28px;
+      border-radius: 30px;
+      background: white;
+      box-shadow: 0 34px 100px rgba(0,0,0,0.32);
+      animation: modalIn 0.35s ease both;
     }
 
     @keyframes modalIn {
-      from { opacity: 0; transform: translateY(24px) scale(.96); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .modal-close {
       position: absolute;
-      right: 18px;
-      top: 16px;
-      width: 36px;
-      height: 36px;
+      top: 14px;
+      right: 14px;
+      width: 38px;
+      height: 38px;
       border: 0;
       border-radius: 50%;
-      background: rgba(6,79,49,.08);
       color: var(--green);
+      background: rgba(11, 79, 52, 0.08);
       cursor: pointer;
+      font-size: 22px;
       z-index: 2;
-      font-size: 20px;
     }
 
-    .modal-card .script {
-      font-size: 55px;
+    .image-modal img {
+      width: 100%;
+      max-height: 76vh;
+      object-fit: contain;
+      display: block;
+      border-radius: 22px;
+    }
+
+    .invite-modal {
+      text-align: center;
+      padding: 36px 28px;
+    }
+
+    .invite-modal .script {
       color: var(--gold);
+      font-size: 60px;
       line-height: 1;
     }
 
-    .modal-card h3 {
-      margin: 10px 0 16px;
-      font-family: "Playfair Display", serif;
+    .invite-modal h3 {
+      margin-top: 10px;
       color: var(--green);
-      font-size: 28px;
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
       text-transform: uppercase;
     }
 
-    .modal-card p {
-      color: #5e6e62;
+    .invite-modal p {
+      margin-top: 14px;
+      color: var(--muted);
       line-height: 1.85;
-      margin: 10px 0;
     }
 
     .reveal {
       opacity: 0;
       transform: translateY(34px);
-      transition: opacity .9s ease, transform .9s ease;
+      transition: 0.9s ease;
     }
 
     .reveal.active {
@@ -1008,350 +1100,404 @@
       transform: translateY(0);
     }
 
-    .sparkle {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: var(--gold-light);
-      border-radius: 50%;
-      box-shadow: 0 0 18px var(--gold-light);
-      animation: sparkle 2.4s ease-in-out infinite;
-    }
-
-    .s1 { left: 8%; top: 22%; animation-delay: .2s; }
-    .s2 { right: 14%; top: 28%; animation-delay: .9s; }
-    .s3 { left: 18%; bottom: 20%; animation-delay: 1.4s; }
-    .s4 { right: 24%; bottom: 16%; animation-delay: .4s; }
-
-    @keyframes sparkle {
-      0%, 100% { opacity: .2; transform: scale(.6); }
-      50% { opacity: 1; transform: scale(1.35); }
-    }
-
-    @media (max-width: 820px) {
-      .intro-grid,
-      .event-grid {
+    @media (max-width: 920px) {
+      .hero-card,
+      .invite-grid,
+      .qr-grid {
         grid-template-columns: 1fr;
+      }
+
+      .hero-photo-wrap {
+        min-height: 540px;
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-item.big {
+        grid-row: span 1;
+      }
+
+      .gallery-item.wide {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .navbar {
+        overflow-x: auto;
+        justify-content: flex-start;
+        scrollbar-width: none;
+      }
+
+      .navbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 82px;
+      }
+
+      .hero-left {
+        padding: 28px 22px;
+      }
+
+      .hero-photo-wrap {
+        min-height: 430px;
+      }
+
+      .date-badge {
+        left: 12px;
+        bottom: 18px;
+        width: 140px;
+        min-height: 140px;
+      }
+
+      .date-badge strong {
+        font-size: 26px;
+      }
+
+      .mini-card {
+        right: 12px;
+        top: 16px;
+        width: 142px;
       }
 
       .countdown {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .timeline::before {
-        left: 16px;
+      section {
+        padding: 68px 14px;
       }
 
-      .timeline-item,
-      .timeline-item:nth-child(even),
-      .timeline-item:nth-child(odd) {
-        width: 100%;
-        left: 0;
-        text-align: left;
-        padding-left: 46px;
-        padding-right: 0;
-      }
-
-      .timeline-item:nth-child(odd) .timeline-dot,
-      .timeline-item:nth-child(even) .timeline-dot {
-        left: 7px;
-        right: auto;
-      }
-
-      .gallery {
+      .gallery-grid {
         grid-template-columns: 1fr;
         grid-auto-rows: 260px;
       }
 
-      .gallery-item:first-child {
-        grid-row: auto;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero {
-        padding-top: 18px;
+      .gallery-item.wide {
+        grid-column: span 1;
       }
 
-      .envelope-wrap {
-        height: 390px;
+      .bank-row {
+        flex-direction: column;
       }
 
-      .photo-card {
-        height: 215px;
-      }
-
-      .envelope {
-        height: 230px;
-      }
-
-      .dates {
-        font-size: 23px;
-        letter-spacing: 4px;
-      }
-
-      .time-box {
-        padding: 20px 8px;
-      }
-
-      .event-card,
-      .timeline-content {
-        padding: 22px;
+      .bank-row strong {
+        text-align: left;
       }
     }
   </style>
 </head>
 
-<body class="no-scroll">
-  <div class="page-loader" id="pageLoader">
-    <div class="loader-card">
-      <div class="loader-rings"></div>
-      <div class="script" style="font-size:48px;">Huyền Diệu & Quốc Tuấn</div>
-      <p>Đang mở thiệp cưới...</p>
+<body class="lock">
+  <div class="loader" id="loader">
+    <div class="loader-box">
+      <div class="loader-heart">♥</div>
+      <div class="script" style="font-size: 48px;">Huyền Diệu & Quốc Tuấn</div>
+      <p>Đang chuẩn bị thiệp cưới...</p>
     </div>
   </div>
 
-  <canvas class="petal-canvas" id="petalCanvas"></canvas>
+  <canvas class="flower-canvas" id="flowerCanvas"></canvas>
 
-  <button class="music-btn" id="musicBtn" title="Bật / tắt nhạc">♪</button>
-  <button class="to-top" id="toTop" title="Lên đầu trang">↑</button>
+  <nav class="navbar">
+    <a href="#top">Trang đầu</a>
+    <a href="#invite">Lời mời</a>
+    <a href="#events">Ngày cưới</a>
+    <a href="#gallery">Album</a>
+    <a href="#qr">Mừng cưới</a>
+    <a href="#rsvp">Xác nhận</a>
+  </nav>
 
-  <audio id="bgMusic" loop>
-    <source src="nhac-cuoi.mp3" type="audio/mpeg">
+  <button class="float-btn music-btn" id="musicBtn" title="Bật/tắt nhạc">♪</button>
+  <div class="music-hint" id="musicHint">Đang tự bật nhạc cưới...</div>
+  <button class="float-btn top-btn" id="topBtn" title="Lên đầu trang">↑</button>
+
+  <!--
+    Đặt file nhạc cùng cấp với index.html:
+    wedding/music.mp3
+    Có thể đổi đường dẫn ở src nếu bạn để nhạc trong thư mục khác, ví dụ: audio/nhac-cuoi.mp3
+  -->
+  <audio id="bgMusic" loop preload="auto" playsinline autoplay>
+    <source src="music.mp3" type="audio/mpeg">
+    <source src="music.ogg" type="audio/ogg">
   </audio>
 
   <header class="hero" id="top">
-    <span class="sparkle s1"></span>
-    <span class="sparkle s2"></span>
-    <span class="sparkle s3"></span>
-    <span class="sparkle s4"></span>
+    <div class="hero-card">
+      <div class="hero-left">
+        <div class="save script">Save the date</div>
+        <h1>Huyền Diệu<br>& Quốc Tuấn</h1>
 
-    <div class="hero-inner">
-      <div class="save script">Save the date</div>
-      <h1 class="couple-name">Huyền Diệu & Quốc Tuấn</h1>
+        <p class="hero-sub">
+          Tình yêu là khi hai người cùng nhau viết tiếp một hành trình mới.
+          Chúng tôi trân trọng kính mời quý khách đến chung vui trong ngày thành hôn.
+        </p>
 
-      <p class="invite-line">TRÂN TRỌNG KÍNH MỜI</p>
-      <div class="guest-name" id="guestName">Quý khách</div>
-      <div class="thin-line"></div>
-
-      <div class="envelope-wrap" id="envelopeWrap">
-        <div class="photo-card">
-          <img src="anh-cuoi.jpg" alt="Ảnh cưới Huyền Diệu và Quốc Tuấn">
+        <div class="guest-line">
+          <span>Trân trọng kính mời</span>
+          <strong id="guestName">Quý khách</strong>
         </div>
 
-        <div class="envelope">
-          <div class="env-flap"></div>
-          <div class="env-back"></div>
+        <div class="hero-actions">
+          <button class="btn btn-green" id="openInviteBtn">Mở thiệp mời</button>
+          <a class="btn btn-gold" href="#events">Xem lịch cưới</a>
+          <button class="btn btn-light" id="copyInviteBtn">Copy lời mời</button>
+        </div>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <div class="main-photo">
+          <img src="images/anh-1.jpg" alt="Ảnh cưới Huyền Diệu và Quốc Tuấn">
         </div>
 
-        <button class="wax" id="openInvite" aria-label="Mở thiệp cưới"></button>
-        <div class="finger">☝</div>
-      </div>
+        <div class="date-badge">
+          <div>
+            <strong>14-15</strong>
+            <span>THÁNG 07<br>2026</span>
+          </div>
+        </div>
 
-      <div class="dates">
-        <div>14.07.2026</div>
-        <div>15.07.2026</div>
+        <div class="mini-card">
+          <div class="script">Wedding</div>
+          <p>Hân hạnh được đón tiếp quý khách</p>
+        </div>
       </div>
-
-      <div class="scroll-hint">Cuộn xuống để xem lời mời ♥</div>
     </div>
   </header>
 
-  <section class="intro">
-    <div class="container intro-grid">
-      <div class="intro-text soft-card reveal">
-        <div class="script">Wedding Invitation</div>
-        <h3>Thư mời tham dự lễ cưới</h3>
-        <p>
-          Tình yêu là hành trình của hai trái tim cùng chọn nhau giữa muôn vàn điều bình dị.
-          Trong niềm hân hoan ấy, gia đình chúng tôi trân trọng kính mời
-          <strong id="guestName2">Quý khách</strong> đến chung vui trong ngày thành hôn của
-          <strong>Huyền Diệu</strong> và <strong>Quốc Tuấn</strong>.
-        </p>
-
-        <div class="quote-box">
-          “Sự hiện diện của quý khách là niềm vinh hạnh và là lời chúc phúc ý nghĩa nhất dành cho hai chúng tôi.”
-        </div>
-
-        <div class="btn-row">
-          <a class="btn btn-primary" href="#events">Xem lịch cưới</a>
-          <button class="btn btn-gold" id="openWish">Gửi lời chúc</button>
-        </div>
-      </div>
-
-      <div class="intro-photo reveal">
-        <img src="anh-cuoi.jpg" alt="Ảnh cô dâu chú rể">
-      </div>
-    </div>
-  </section>
-
   <section class="countdown-section">
     <div class="container">
-      <div class="section-title reveal">
-        <div class="script">Counting down</div>
-        <h2>Đếm ngược ngày vui</h2>
-      </div>
+      <div class="countdown-wrap reveal">
+        <div class="section-title" style="margin-bottom: 28px;">
+          <div class="script" style="color: var(--gold-2);">Counting down</div>
+          <h2 style="color: white;">Đếm ngược ngày vui</h2>
+        </div>
 
-      <div class="countdown reveal" id="countdown">
-        <div class="time-box">
-          <strong id="days">00</strong>
-          <span>Ngày</span>
-        </div>
-        <div class="time-box">
-          <strong id="hours">00</strong>
-          <span>Giờ</span>
-        </div>
-        <div class="time-box">
-          <strong id="minutes">00</strong>
-          <span>Phút</span>
-        </div>
-        <div class="time-box">
-          <strong id="seconds">00</strong>
-          <span>Giây</span>
+        <div class="countdown">
+          <div class="time-box">
+            <strong id="days">00</strong>
+            <span>Ngày</span>
+          </div>
+          <div class="time-box">
+            <strong id="hours">00</strong>
+            <span>Giờ</span>
+          </div>
+          <div class="time-box">
+            <strong id="minutes">00</strong>
+            <span>Phút</span>
+          </div>
+          <div class="time-box">
+            <strong id="seconds">00</strong>
+            <span>Giây</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="events">
+  <section class="invite-section" id="invite">
+    <div class="container invite-grid">
+      <div class="invite-photo reveal">
+        <img src="images/anh-2.jpg" alt="Ảnh cưới">
+      </div>
+
+      <div class="invite-content white-card reveal">
+        <div class="script">Wedding Invitation</div>
+        <h2>Thư mời tham dự lễ cưới</h2>
+
+        <p>
+          Gia đình chúng tôi trân trọng kính mời
+          <strong id="guestName2">Quý khách</strong>
+          đến dự lễ thành hôn của hai con chúng tôi:
+        </p>
+
+        <p style="font-family: 'Playfair Display', serif; color: var(--green); font-size: 25px;">
+          <strong>Huyền Diệu</strong> & <strong>Quốc Tuấn</strong>
+        </p>
+
+        <p>
+          Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình và là lời chúc phúc
+          ý nghĩa nhất dành cho cô dâu chú rể.
+        </p>
+
+        <div class="quote">
+          “Một lời chúc, một nụ cười và sự hiện diện của quý khách sẽ làm ngày vui thêm trọn vẹn.”
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-green" href="#gallery">Xem album cưới</a>
+          <a class="btn btn-gold" href="#qr">Mừng cưới online</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="events-section" id="events">
     <div class="container">
       <div class="section-title reveal">
         <div class="script">Wedding Events</div>
         <h2>Thông tin ngày cưới</h2>
+        <p>
+          Bạn thay lại giờ, địa điểm và địa chỉ chính xác theo thiệp thật.
+        </p>
       </div>
 
-      <div class="event-grid">
-        <article class="event-card soft-card reveal">
+      <div class="events-grid">
+        <article class="event-card white-card reveal">
           <div class="event-icon">💍</div>
           <h3>Ngày cưới thứ nhất</h3>
-          <div class="date-big">14.07.2026</div>
+          <div class="event-date">14.07.2026</div>
           <p><strong>Thời gian:</strong> 10:30 sáng</p>
           <p><strong>Địa điểm:</strong> Nhà gái / Trung tâm tiệc cưới</p>
-          <p><strong>Địa chỉ:</strong> Bạn thay địa chỉ chính xác vào đây.</p>
+          <p><strong>Địa chỉ:</strong> Nhập địa chỉ tổ chức tại đây.</p>
 
-          <div class="btn-row">
-            <a class="btn btn-primary" href="https://maps.google.com" target="_blank">Xem bản đồ</a>
-            <button class="btn btn-gold copyBtn" data-text="Thiệp cưới Huyền Diệu & Quốc Tuấn - 14.07.2026">Copy lời mời</button>
+          <div class="hero-actions">
+            <a class="btn btn-green" target="_blank" href="https://maps.google.com">Xem bản đồ</a>
           </div>
         </article>
 
-        <article class="event-card soft-card reveal">
+        <article class="event-card white-card reveal">
           <div class="event-icon">🥂</div>
           <h3>Ngày cưới thứ hai</h3>
-          <div class="date-big">15.07.2026</div>
+          <div class="event-date">15.07.2026</div>
           <p><strong>Thời gian:</strong> 10:30 sáng</p>
           <p><strong>Địa điểm:</strong> Nhà trai / Trung tâm tiệc cưới</p>
-          <p><strong>Địa chỉ:</strong> Bạn thay địa chỉ chính xác vào đây.</p>
+          <p><strong>Địa chỉ:</strong> Nhập địa chỉ tổ chức tại đây.</p>
 
-          <div class="btn-row">
-            <a class="btn btn-primary" href="https://maps.google.com" target="_blank">Xem bản đồ</a>
-            <button class="btn btn-gold copyBtn" data-text="Thiệp cưới Huyền Diệu & Quốc Tuấn - 15.07.2026">Copy lời mời</button>
+          <div class="hero-actions">
+            <a class="btn btn-green" target="_blank" href="https://maps.google.com">Xem bản đồ</a>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="timeline-section">
-    <div class="container">
-      <div class="section-title reveal">
-        <div class="script">Our Schedule</div>
-        <h2>Lịch trình buổi lễ</h2>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <span class="timeline-dot"></span>
-          <div class="timeline-content soft-card">
-            <time>09:00</time>
-            <h3>Đón khách</h3>
-            <p>Gia đình hai bên hân hoan đón tiếp quý khách, bạn bè và người thân.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span class="timeline-dot"></span>
-          <div class="timeline-content soft-card">
-            <time>10:00</time>
-            <h3>Làm lễ thành hôn</h3>
-            <p>Khoảnh khắc cô dâu chú rể chính thức nên duyên vợ chồng.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span class="timeline-dot"></span>
-          <div class="timeline-content soft-card">
-            <time>10:30</time>
-            <h3>Khai tiệc</h3>
-            <p>Cùng nâng ly chúc mừng ngày vui của Huyền Diệu và Quốc Tuấn.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <span class="timeline-dot"></span>
-          <div class="timeline-content soft-card">
-            <time>12:00</time>
-            <h3>Chụp hình lưu niệm</h3>
-            <p>Lưu giữ những tấm hình đẹp cùng cô dâu chú rể và gia đình.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
+  <section class="gallery-section" id="gallery">
     <div class="container">
       <div class="section-title reveal">
         <div class="script">Beautiful Moments</div>
-        <h2>Khoảnh khắc yêu thương</h2>
+        <h2>Album ảnh cưới</h2>
+        <p>
+          7 khoảnh khắc đẹp của Huyền Diệu và Quốc Tuấn. Bấm vào từng ảnh để xem lớn.
+        </p>
       </div>
 
-      <div class="gallery reveal">
-        <div class="gallery-item">
-          <img src="anh-cuoi.jpg" alt="Album cưới 1">
+      <div class="gallery-grid reveal">
+        <div class="gallery-item big" data-img="images/anh-1.jpg">
+          <img src="images/anh-1.jpg" alt="Ảnh cưới 1">
         </div>
-        <div class="gallery-item">
-          <img src="anh-cuoi.jpg" alt="Album cưới 2">
+
+        <div class="gallery-item" data-img="images/anh-2.jpg">
+          <img src="images/anh-2.jpg" alt="Ảnh cưới 2">
         </div>
-        <div class="gallery-item">
-          <img src="anh-cuoi.jpg" alt="Album cưới 3">
+
+        <div class="gallery-item" data-img="images/anh-3.jpg">
+          <img src="images/anh-3.jpg" alt="Ảnh cưới 3">
         </div>
-        <div class="gallery-item">
-          <img src="anh-cuoi.jpg" alt="Album cưới 4">
+
+        <div class="gallery-item" data-img="images/anh-4.jpg">
+          <img src="images/anh-4.jpg" alt="Ảnh cưới 4">
         </div>
-        <div class="gallery-item">
-          <img src="anh-cuoi.jpg" alt="Album cưới 5">
+
+        <div class="gallery-item" data-img="images/anh-5.jpg">
+          <img src="images/anh-5.jpg" alt="Ảnh cưới 5">
+        </div>
+
+        <div class="gallery-item wide" data-img="images/anh-6.jpg">
+          <img src="images/anh-6.jpg" alt="Ảnh cưới 6">
+        </div>
+
+        <div class="gallery-item" data-img="images/anh-7.jpg">
+          <img src="images/anh-7.jpg" alt="Ảnh cưới 7">
         </div>
       </div>
     </div>
   </section>
 
-  <section class="rsvp-section">
-    <div class="container">
-      <div class="rsvp-card soft-card reveal">
-        <div class="section-title" style="margin-bottom:18px;">
-          <div class="script">Are you attending?</div>
-          <h2>Xác nhận tham dự</h2>
-        </div>
+  <section class="qr-section" id="qr">
+    <div class="container qr-grid">
+      <div class="qr-info white-card reveal">
+        <div class="script">Wedding Gift</div>
+        <h2>Mừng cưới online</h2>
 
         <p>
-          Để gia đình chuẩn bị chu đáo hơn, quý khách vui lòng xác nhận tham dự
-          và gửi lời chúc đến cô dâu chú rể.
+          Quý khách ở xa hoặc muốn gửi lời chúc mừng đến cô dâu chú rể có thể quét mã QR bên cạnh.
+          Gia đình xin trân trọng cảm ơn tình cảm và lời chúc phúc của quý khách.
         </p>
 
+        <div class="bank-list">
+          <div class="bank-row">
+            <span>Ngân hàng</span>
+            <strong>Nhập tên ngân hàng</strong>
+          </div>
+
+          <div class="bank-row">
+            <span>Chủ tài khoản</span>
+            <strong>NGUYEN QUOC TUAN</strong>
+          </div>
+
+          <div class="bank-row">
+            <span>Số tài khoản</span>
+            <strong id="bankNumber">0123456789</strong>
+          </div>
+
+          <div class="bank-row">
+            <span>Nội dung</span>
+            <strong>Mung cuoi Quoc Tuan Huyen Dieu</strong>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <button class="btn btn-green" id="copyBankBtn">Copy số tài khoản</button>
+          <button class="btn btn-gold" id="copyContentBtn">Copy nội dung CK</button>
+        </div>
+      </div>
+
+      <div class="qr-card white-card reveal">
+        <div class="qr-inner">
+          <img src="images/qr-thu-tien.jpg" alt="QR mừng cưới">
+          <h3>Quét QR mừng cưới</h3>
+          <p>
+            Huyền Diệu & Quốc Tuấn xin cảm ơn lời chúc phúc của quý khách.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rsvp-section" id="rsvp">
+    <div class="container">
+      <div class="rsvp-card white-card reveal">
+        <div class="section-title" style="margin-bottom: 20px;">
+          <div class="script">Are you attending?</div>
+          <h2>Xác nhận tham dự</h2>
+          <p>
+            Quý khách vui lòng xác nhận để gia đình chuẩn bị đón tiếp chu đáo hơn.
+          </p>
+        </div>
+
         <form class="form" id="rsvpForm">
-          <input type="text" id="rsvpName" placeholder="Tên của bạn" required>
-          <select id="rsvpAttend" required>
+          <input type="text" id="nameInput" placeholder="Tên của bạn" required>
+
+          <select id="attendInput" required>
             <option value="">Bạn có tham dự không?</option>
             <option value="Có, tôi sẽ tham dự">Có, tôi sẽ tham dự</option>
             <option value="Rất tiếc, tôi không tham dự được">Rất tiếc, tôi không tham dự được</option>
           </select>
-          <input type="number" id="rsvpPeople" placeholder="Số người tham dự" min="1">
-          <textarea id="rsvpMessage" rows="4" placeholder="Lời chúc gửi đến cô dâu chú rể"></textarea>
 
-          <button class="btn btn-primary" type="submit" style="justify-content:center;">
-            Gửi xác nhận
-          </button>
+          <input type="number" id="peopleInput" min="1" placeholder="Số người tham dự">
+
+          <textarea id="wishInput" rows="4" placeholder="Lời chúc gửi đến cô dâu chú rể"></textarea>
+
+          <button class="btn btn-green" type="submit">Gửi xác nhận</button>
         </form>
       </div>
     </div>
@@ -1359,54 +1505,54 @@
 
   <footer class="footer">
     <div class="script">Thank you</div>
+    <h2>Huyền Diệu & Quốc Tuấn</h2>
     <p>
-      Huyền Diệu & Quốc Tuấn<br>
-      Rất hân hạnh được đón tiếp quý khách trong ngày vui của chúng tôi.
+      Rất hân hạnh được đón tiếp quý khách trong ngày vui của chúng tôi.<br>
+      14.07.2026 - 15.07.2026
     </p>
   </footer>
 
   <div class="modal" id="inviteModal">
-    <div class="modal-card">
+    <div class="modal-card invite-modal">
       <button class="modal-close" data-close="inviteModal">×</button>
+
       <div class="script">Trân trọng kính mời</div>
       <h3 id="modalGuest">Quý khách</h3>
+
       <p>
         Đến dự lễ thành hôn của<br>
-        <strong>Huyền Diệu & Quốc Tuấn</strong>
+        <strong style="color: var(--green);">Huyền Diệu & Quốc Tuấn</strong>
       </p>
+
       <p>
         Vào hai ngày <strong>14.07.2026</strong> và <strong>15.07.2026</strong>.
       </p>
+
       <p>
         Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình chúng tôi.
       </p>
-      <div class="btn-row" style="justify-content:center;">
-        <a class="btn btn-primary" href="#events" data-close="inviteModal">Xem lịch cưới</a>
+
+      <div class="hero-actions" style="justify-content: center;">
+        <a class="btn btn-green" href="#events" data-close="inviteModal">Xem lịch cưới</a>
+        <a class="btn btn-gold" href="#qr" data-close="inviteModal">Mừng cưới online</a>
       </div>
     </div>
   </div>
 
-  <div class="modal" id="wishModal">
-    <div class="modal-card">
-      <button class="modal-close" data-close="wishModal">×</button>
-      <div class="script">Gửi lời chúc</div>
-      <h3>Chúc phúc cô dâu chú rể</h3>
-      <p>
-        Cảm ơn quý khách đã dành tình cảm cho Huyền Diệu và Quốc Tuấn.
-        Hãy gửi một lời chúc thật đẹp ở phần xác nhận tham dự nhé!
-      </p>
-      <div class="btn-row" style="justify-content:center;">
-        <a class="btn btn-gold" href="#rsvpForm" data-close="wishModal">Viết lời chúc</a>
-      </div>
+  <div class="modal" id="imageModal">
+    <div class="modal-card image-modal">
+      <button class="modal-close" data-close="imageModal">×</button>
+      <img id="modalImage" src="" alt="Ảnh cưới xem lớn">
     </div>
   </div>
 
   <script>
     const CONFIG = {
-      bride: "Huyền Diệu",
-      groom: "Quốc Tuấn",
+      couple: "Huyền Diệu & Quốc Tuấn",
       weddingDate: "2026-07-14T10:30:00",
-      defaultGuest: "Quý khách"
+      defaultGuest: "Quý khách",
+      bankNumber: "0123456789",
+      transferContent: "Mung cuoi Quoc Tuan Huyen Dieu"
     };
 
     const $ = (selector) => document.querySelector(selector);
@@ -1414,50 +1560,56 @@
 
     window.addEventListener("load", () => {
       setTimeout(() => {
-        $("#pageLoader").classList.add("hide");
-        document.body.classList.remove("no-scroll");
-      }, 900);
+        $("#loader").classList.add("hide");
+        document.body.classList.remove("lock");
+      }, 800);
     });
 
     function getGuestName() {
       const params = new URLSearchParams(window.location.search);
-      const name = params.get("name") || params.get("ten") || "";
-      return decodeURIComponent(name.trim()) || CONFIG.defaultGuest;
+      const guest = params.get("name") || params.get("ten") || "";
+      return guest.trim() || CONFIG.defaultGuest;
     }
 
-    function setGuestName() {
+    function renderGuestName() {
       const guest = getGuestName();
+
       $("#guestName").textContent = guest;
       $("#guestName2").textContent = guest;
       $("#modalGuest").textContent = guest;
-      $("#rsvpName").value = guest === CONFIG.defaultGuest ? "" : guest;
+
+      if (guest !== CONFIG.defaultGuest) {
+        $("#nameInput").value = guest;
+      }
     }
 
-    setGuestName();
+    renderGuestName();
 
-    $("#openInvite").addEventListener("click", () => {
-      $("#envelopeWrap").classList.add("open");
-      setTimeout(() => {
-        $("#inviteModal").classList.add("show");
-        fireConfetti();
-      }, 650);
+    $("#openInviteBtn").addEventListener("click", () => {
+      $("#inviteModal").classList.add("show");
+      heartBurst();
     });
 
-    $$("[data-close]").forEach(el => {
+    $$("[data-close]").forEach((el) => {
       el.addEventListener("click", () => {
-        const id = el.getAttribute("data-close");
+        const id = el.dataset.close;
         document.getElementById(id).classList.remove("show");
       });
     });
 
-    $$(".modal").forEach(modal => {
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) modal.classList.remove("show");
+    $$(".modal").forEach((modal) => {
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.classList.remove("show");
+        }
       });
     });
 
-    $("#openWish").addEventListener("click", () => {
-      $("#wishModal").classList.add("show");
+    $$(".gallery-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        $("#modalImage").src = item.dataset.img;
+        $("#imageModal").classList.add("show");
+      });
     });
 
     function updateCountdown() {
@@ -1487,8 +1639,8 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("active");
         }
@@ -1497,79 +1649,184 @@
       threshold: 0.14
     });
 
-    $$(".reveal").forEach(el => observer.observe(el));
+    $$(".reveal").forEach((el) => revealObserver.observe(el));
 
     const music = $("#bgMusic");
     const musicBtn = $("#musicBtn");
-    let playing = false;
+    const musicHint = $("#musicHint");
+    let isPlaying = false;
+    let firstMusicTry = false;
+
+    // Cấu hình nhạc cưới
+    music.volume = 0.55;
+
+    function setMusicUI(playing) {
+      isPlaying = playing;
+
+      if (playing) {
+        musicBtn.textContent = "♫";
+        musicBtn.classList.add("playing");
+        musicBtn.classList.remove("loading");
+        musicBtn.title = "Tắt nhạc";
+        musicHint.classList.add("hide");
+      } else {
+        musicBtn.textContent = "♪";
+        musicBtn.classList.remove("playing", "loading");
+        musicBtn.title = "Bật nhạc";
+      }
+    }
+
+    async function playWeddingMusic(showAlert = false) {
+      firstMusicTry = true;
+
+      try {
+        musicBtn.classList.add("loading");
+        music.muted = false;
+        music.volume = 0.55;
+        await music.play();
+        setMusicUI(true);
+      } catch (error) {
+        setMusicUI(false);
+        musicHint.textContent = "Trình duyệt chặn tự phát nhạc. Chạm vào màn hình để bật.";
+        musicHint.classList.remove("hide");
+
+        if (showAlert) {
+          alert(
+            "Chưa bật được nhạc. Bạn kiểm tra đã có file music.mp3 cùng thư mục với index.html chưa, rồi bấm nút ♪ để bật lại."
+          );
+        }
+      }
+    }
+
+    // Tự phát nhạc ngay khi website mở.
+    // Lưu ý: Chrome/Safari/iPhone có thể chặn nhạc có tiếng nếu khách chưa chạm vào trang.
+    // Vì vậy code sẽ tự thử bật trước, nếu bị chặn thì lần chạm/click đầu tiên sẽ bật nhạc ngay.
+    function autoStartMusic() {
+      if (isPlaying) return;
+
+      musicHint.textContent = "Đang tự bật nhạc cưới...";
+      musicHint.classList.remove("hide");
+      music.load();
+      playWeddingMusic(false);
+    }
+
+    setTimeout(autoStartMusic, 500);
+    window.addEventListener("load", () => {
+      setTimeout(autoStartMusic, 900);
+    });
+
+    function pauseWeddingMusic() {
+      music.pause();
+      setMusicUI(false);
+      musicHint.textContent = "Bấm ♪ để bật lại nhạc";
+      musicHint.classList.remove("hide");
+    }
 
     musicBtn.addEventListener("click", async () => {
-      try {
-        if (!playing) {
-          await music.play();
-          playing = true;
-          musicBtn.textContent = "♫";
-          musicBtn.style.animation = "waxPulse 1.7s ease-in-out infinite";
-        } else {
-          music.pause();
-          playing = false;
-          musicBtn.textContent = "♪";
-          musicBtn.style.animation = "none";
-        }
-      } catch (err) {
-        alert("Trình duyệt đang chặn nhạc tự động. Hãy bấm lại để bật nhạc.");
+      if (isPlaying) {
+        pauseWeddingMusic();
+      } else {
+        await playWeddingMusic(true);
       }
+    });
+
+    // Khi khách bấm mở thiệp, trình duyệt cho phép phát nhạc vì đã có thao tác người dùng
+    $("#openInviteBtn").addEventListener("click", () => {
+      if (!isPlaying) {
+        playWeddingMusic(false);
+      }
+    });
+
+    // Dự phòng: lần chạm/click đầu tiên trên trang sẽ bật nhạc nếu trình duyệt đã chặn auto-play
+    ["click", "touchstart", "pointerdown", "keydown"].forEach((eventName) => {
+      document.addEventListener(eventName, () => {
+        if (!isPlaying) {
+          playWeddingMusic(false);
+        }
+      }, { once: true, passive: true });
+    });
+
+    music.addEventListener("ended", () => {
+      music.currentTime = 0;
+      playWeddingMusic(false);
+    });
+
+    music.addEventListener("error", () => {
+      setMusicUI(false);
+      musicHint.textContent = "Không tìm thấy file music.mp3";
+      musicHint.classList.remove("hide");
     });
 
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 600) {
-        $("#toTop").classList.add("show");
+      if (window.scrollY > 620) {
+        $("#topBtn").classList.add("show");
       } else {
-        $("#toTop").classList.remove("show");
+        $("#topBtn").classList.remove("show");
       }
     });
 
-    $("#toTop").addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    $$(".copyBtn").forEach(btn => {
-      btn.addEventListener("click", async () => {
-        const text = btn.dataset.text + "\n" + window.location.href;
-        try {
-          await navigator.clipboard.writeText(text);
-          btn.textContent = "Đã copy ✓";
-          setTimeout(() => btn.textContent = "Copy lời mời", 1600);
-        } catch {
-          alert(text);
-        }
+    $("#topBtn").addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
       });
     });
 
-    $("#rsvpForm").addEventListener("submit", (e) => {
-      e.preventDefault();
+    $("#copyInviteBtn").addEventListener("click", async () => {
+      const text =
+        "Trân trọng kính mời " + getGuestName() + "\n" +
+    "Đến dự lễ thành hôn của Huyền Diệu & Quốc Tuấn\n" +
+    "Thời gian: 14.07.2026 - 15.07.2026\n" +
+    "Thiệp cưới online: " + window.location.href; + getGuestName() + "\\n" +
+        "Đến dự lễ thành hôn của Huyền Diệu & Quốc Tuấn\\n" +
+        "Thời gian: 14.07.2026 - 15.07.2026\\n" +
+        "Thiệp cưới online: " + window.location.href;
 
-      const name = $("#rsvpName").value.trim();
-      const attend = $("#rsvpAttend").value;
-      const people = $("#rsvpPeople").value || "1";
-      const message = $("#rsvpMessage").value.trim();
-
-      const content =
-        `Xác nhận tham dự tiệc cưới Huyền Diệu & Quốc Tuấn%0A` +
-        `Tên: ${encodeURIComponent(name)}%0A` +
-        `Trạng thái: ${encodeURIComponent(attend)}%0A` +
-        `Số người: ${encodeURIComponent(people)}%0A` +
-        `Lời chúc: ${encodeURIComponent(message)}`;
-
-      alert("Cảm ơn bạn đã gửi xác nhận. Nếu muốn gửi qua Zalo/Facebook, hãy thay phần xử lý form bằng link của bạn.");
-      console.log(decodeURIComponent(content));
-      fireConfetti();
-      e.target.reset();
+      await copyText(text, "Đã copy lời mời");
     });
 
-    const canvas = $("#petalCanvas");
+    $("#copyBankBtn").addEventListener("click", async () => {
+      await copyText(CONFIG.bankNumber, "Đã copy số tài khoản");
+    });
+
+    $("#copyContentBtn").addEventListener("click", async () => {
+      await copyText(CONFIG.transferContent, "Đã copy nội dung chuyển khoản");
+    });
+
+    async function copyText(text, successMessage) {
+      try {
+        await navigator.clipboard.writeText(text);
+        alert(successMessage);
+      } catch {
+        prompt("Copy nội dung bên dưới:", text);
+      }
+    }
+
+    $("#rsvpForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const name = $("#nameInput").value.trim();
+      const attend = $("#attendInput").value;
+      const people = $("#peopleInput").value || "1";
+      const wish = $("#wishInput").value.trim();
+
+      const message =
+        "Xác nhận tham dự tiệc cưới Huyền Diệu & Quốc Tuấn\\n" +
+        "Tên: " + name + "\\n" +
+        "Trạng thái: " + attend + "\\n" +
+        "Số người: " + people + "\\n" +
+        "Lời chúc: " + wish;
+
+      console.log(message);
+      alert("Cảm ơn bạn đã gửi xác nhận tham dự!");
+      heartBurst();
+      event.target.reset();
+    });
+
+    const canvas = $("#flowerCanvas");
     const ctx = canvas.getContext("2d");
-    let petals = [];
+    let flowers = [];
+    let hearts = [];
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -1579,97 +1836,98 @@
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    function createPetal() {
+    function createFlower() {
       return {
         x: Math.random() * canvas.width,
-        y: -20 - Math.random() * canvas.height,
-        size: 7 + Math.random() * 12,
-        speed: 0.7 + Math.random() * 1.4,
-        drift: -0.6 + Math.random() * 1.2,
+        y: -30 - Math.random() * canvas.height,
+        size: 6 + Math.random() * 12,
+        speed: 0.55 + Math.random() * 1.2,
+        drift: -0.45 + Math.random() * 0.9,
         rotate: Math.random() * Math.PI,
         rotateSpeed: -0.025 + Math.random() * 0.05,
-        alpha: 0.45 + Math.random() * 0.45
+        alpha: 0.35 + Math.random() * 0.45
       };
     }
 
-    for (let i = 0; i < 45; i++) {
-      petals.push(createPetal());
+    for (let i = 0; i < 42; i++) {
+      flowers.push(createFlower());
     }
 
-    function drawPetals() {
+    function drawPetal(x, y, size, rotate, alpha) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotate);
+      ctx.globalAlpha = alpha;
+
+      const gradient = ctx.createRadialGradient(0, 0, 1, 0, 0, size);
+      gradient.addColorStop(0, "rgba(255, 240, 226, 0.95)");
+      gradient.addColorStop(1, "rgba(184, 138, 59, 0.34)");
+
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, size * 0.52, size, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function drawHeart(x, y, size, alpha) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(size, size);
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = "#b88a3b";
+
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(-2, -2, -5, 1, 0, 5);
+      ctx.bezierCurveTo(5, 1, 2, -2, 0, 0);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function animateCanvas() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      petals.forEach(p => {
-        p.y += p.speed;
-        p.x += p.drift + Math.sin(p.y * 0.012) * 0.5;
-        p.rotate += p.rotateSpeed;
+      flowers.forEach((flower) => {
+        flower.y += flower.speed;
+        flower.x += flower.drift + Math.sin(flower.y * 0.012) * 0.45;
+        flower.rotate += flower.rotateSpeed;
 
-        if (p.y > canvas.height + 30) {
-          Object.assign(p, createPetal(), { y: -30 });
+        if (flower.y > canvas.height + 40) {
+          Object.assign(flower, createFlower(), { y: -40 });
         }
 
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rotate);
-        ctx.globalAlpha = p.alpha;
-
-        const grad = ctx.createRadialGradient(0, 0, 1, 0, 0, p.size);
-        grad.addColorStop(0, "rgba(255, 237, 220, .95)");
-        grad.addColorStop(1, "rgba(183, 139, 59, .42)");
-
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.ellipse(0, 0, p.size * .55, p.size, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.restore();
+        drawPetal(flower.x, flower.y, flower.size, flower.rotate, flower.alpha);
       });
 
-      requestAnimationFrame(drawPetals);
+      hearts.forEach((heart) => {
+        heart.x += heart.vx;
+        heart.y += heart.vy;
+        heart.vy += 0.035;
+        heart.life -= 1;
+        drawHeart(heart.x, heart.y, heart.size, Math.max(heart.life / 100, 0));
+      });
+
+      hearts = hearts.filter((heart) => heart.life > 0);
+
+      requestAnimationFrame(animateCanvas);
     }
 
-    drawPetals();
+    animateCanvas();
 
-    function fireConfetti() {
-      const pieces = [];
-      const total = 90;
-
-      for (let i = 0; i < total; i++) {
-        pieces.push({
+    function heartBurst() {
+      for (let i = 0; i < 46; i++) {
+        hearts.push({
           x: canvas.width / 2,
           y: canvas.height / 2,
-          vx: (Math.random() - .5) * 9,
-          vy: (Math.random() - .8) * 9,
-          size: 4 + Math.random() * 7,
-          life: 80 + Math.random() * 40,
-          color: Math.random() > .5 ? "#b78b3b" : "#064f31"
+          vx: (Math.random() - 0.5) * 8,
+          vy: (Math.random() - 0.8) * 7,
+          size: 1.2 + Math.random() * 1.6,
+          life: 70 + Math.random() * 40
         });
       }
-
-      let frame = 0;
-
-      function animate() {
-        frame++;
-        pieces.forEach(c => {
-          c.x += c.vx;
-          c.y += c.vy;
-          c.vy += .11;
-          c.life--;
-          ctx.save();
-          ctx.globalAlpha = Math.max(c.life / 100, 0);
-          ctx.fillStyle = c.color;
-          ctx.translate(c.x, c.y);
-          ctx.rotate(frame * .1);
-          ctx.fillRect(-c.size / 2, -c.size / 2, c.size, c.size);
-          ctx.restore();
-        });
-
-        if (pieces.some(c => c.life > 0)) {
-          requestAnimationFrame(animate);
-        }
-      }
-
-      animate();
     }
   </script>
 </body>
